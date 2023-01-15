@@ -22,3 +22,11 @@ console.log(path.basename(__filename));
 console.log(path.extname(__filename));
 
 console.log(path.parse(__filename));
+
+//Global - No Window!!
+
+// __dirname - path to current directory
+// __filename - file name 
+// require - function to use modules (Commands)
+// module - info about current module (file)
+// process - info about environment where the program is being executed
