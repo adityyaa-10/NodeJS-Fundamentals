@@ -18,3 +18,7 @@ console.log(`This is my first node app`);  //Codes '' and template stirng `` bot
 // process - info about environment where the program is being executed
 
 console.log(`Current directory is ${__dirname}`);
+
+setInterval(() =>{
+    console.log("Hello World");
+}, 500);
