@@ -2,14 +2,9 @@
 //Modules - Encapsulated code (Only share minimum);
 
 // Importing modules
-
 const sayHi = require('./utils');
 const data = require('./alternateSyntax');
-// const names = require('./names');
-
-// console.log(data);
-console.log(names);
-
+const names = require('./names');
 require('./quiz');
 
 sayHi('Ross');
