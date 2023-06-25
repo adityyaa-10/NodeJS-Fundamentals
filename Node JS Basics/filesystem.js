@@ -1,4 +1,5 @@
-// READING AND WRITING TO A FILE
+// READING AND WRITING TO A FILE SYNCHRONOUSLY
+/****************************************************/
 
 // const readline = require('readline')
 const fs = require('fs')
