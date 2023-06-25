@@ -5,11 +5,12 @@ const http = require('http')
 // CREATING A SIMPLE WEB SERVER
 /*************************************/
 
+const html = fs.readFileSync('./Template/index.html', 'utf-8')
 // STEP 1 : CREATE A SERVER 
 
 const server = http.createServer((request, response) => {
     console.log('A new request has been recieved');
-    response.end('Hello From the server')
+    response.end(html)
     console.log(response)
 });
 
