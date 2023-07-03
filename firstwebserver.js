@@ -25,25 +25,78 @@ const productDetailHtml = fs.readFileSync('./Template/details.html', 'utf-8');
 //     return output
 // })
 
-function replaceHtml(template, product) {
-    let output = template.replace('{{%IMAGE%}}', product.productImage);
-    output = output.replace('{{%NAME%}}', product.name)
-    output = output.replace('{{%MODELNAME%}}', product.modeName)
-    output = output.replace('{{%MODELNO%}}', product.modelNumber)
-    output = output.replace('{{%SIZE%}}', product.size)
-    output = output.replace('{{%CAMERA%}}', product.camera)
-    output = output.replace('{{%PRICE%}}', product.price)
-    output = output.replace('{{%COLOR%}}', product.color)
-    output = output.replace('{{%ID%}}', product.id)
-    output = output.replace('{{%ROM%}}', product.ROM)
-    output = output.replace('{{%DESC%}}', product.Description)
-    return output
-}
+const replaceHtml = require('./Modules/replaceHtml')
+
+// function replaceHtml(template, product) {
+//     let output = template.replace('{{%IMAGE%}}', product.productImage);
+//     output = output.replace('{{%NAME%}}', product.name)
+//     output = output.replace('{{%MODELNAME%}}', product.modeName)
+//     output = output.replace('{{%MODELNO%}}', product.modelNumber)
+//     output = output.replace('{{%SIZE%}}', product.size)
+//     output = output.replace('{{%CAMERA%}}', product.camera)
+//     output = output.replace('{{%PRICE%}}', product.price)
+//     output = output.replace('{{%COLOR%}}', product.color)
+//     output = output.replace('{{%ID%}}', product.id)
+//     output = output.replace('{{%ROM%}}', product.ROM)
+//     output =yehi ya output.replace('{{%DESC%}}', product.Description)
+//     return output
+// }
 
 // STEP 1 : CREATE A SERVER 
 
-const server = http.createServer((request, response) => {
-    // let path = request.url;
+// const server = http.createServer((request, response) => {
+//     // let path = request.url;
+//     let { query, pathname: path } = url.parse(request.url, true)
+
+//     if (path === '/' || path.toLocaleLowerCase() === '/home') {
+//         response.writeHead(200, {
+//             'Content-Type': 'text/html',
+//             'My-Header': 'Hello, World!'
+//         })
+//         response.end(html.replace('{{%content%}}', 'You are in Home Page'))
+//     }
+//     else if (path.toLocaleLowerCase() === '/about') {
+//         response.writeHead(200, {
+//             'Content-Type': 'text/html',
+//             'My-Header': 'Hello, World!'
+//         })
+//         response.end(html.replace('{{%content%}}', 'You are in About Page'))
+//     }
+//     else if (path.toLocaleLowerCase() === '/contact') {
+//         response.writeHead(200, {
+//             'Content-Type': 'text/html',
+//             'My-Header': 'Hello, World!'
+//         })
+//         response.end(html.replace('{{%content%}}', 'You are in Contact Page'))
+//     }
+//     else if (path.toLocaleLowerCase() === '/products') {
+//         if (!query.id) {
+//             let productHtmlArray = products.map((prod) => {
+//                 return replaceHtml(productListHtml, prod)
+//             })
+//             let productResponseHtml = html.replace('{{%content%}}', productHtmlArray.join(','))
+//             response.writeHead(200, { 'Content-Type': 'text/html', })
+//             response.end(productResponseHtml)
+//         }
+//         else {
+//             let prod = products[query.id];
+//             let productDetailResponseHtml = replaceHtml(productDetailHtml, prod)
+//             // response.end('This is product having id ' + query.id)
+//             response.end(html.replace('{{%content%}}', productDetailResponseHtml))
+//         }
+//     }
+//     else {
+//         response.writeHead(404, {
+//             'Content-Type': 'text/html',
+//             'My-Header': 'Hello, World!'
+//         })
+//         response.end(html.replace('{{%content%}}', 'Error 404: Page Not Found'))
+//     }
+// });
+
+const server = http.createServer();
+
+server.on('request', (request, response) => {
     let { query, pathname: path } = url.parse(request.url, true)
 
     if (path === '/' || path.toLocaleLowerCase() === '/home') {
@@ -90,7 +143,7 @@ const server = http.createServer((request, response) => {
         })
         response.end(html.replace('{{%content%}}', 'Error 404: Page Not Found'))
     }
-});
+})
 
 
 // STEP 2 : START THE SERVER
