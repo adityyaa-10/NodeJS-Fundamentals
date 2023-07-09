@@ -2,6 +2,7 @@ const readline = require('readline')
 const fs = require('fs')
 const http = require('http');
 const url = require('url')
+const events = require('events')
 
 // CREATING A SIMPLE WEB SERVER
 /*************************************/
@@ -25,7 +26,9 @@ const productDetailHtml = fs.readFileSync('./Template/details.html', 'utf-8');
 //     return output
 // })
 
+//USER DEFINED MODULES
 const replaceHtml = require('./Modules/replaceHtml')
+const user = require('./Modules/user')
 
 // function replaceHtml(template, product) {
 //     let output = template.replace('{{%IMAGE%}}', product.productImage);
@@ -153,3 +156,16 @@ server.listen(8000, '127.0.0.1', () => {
 })
 // Here 8000 is the port which we have to specify
 // 127.0.0.1 is the url for localhost 
+
+/* **************************************************** */
+// EMITTING AND HANDLING CUSTOM EVENTS
+/* **************************************************** */
+
+let myEmitter = new user();
+
+
+myEmitter.on('userCreated', (id, name) => {
+    console.log(`A new user ${name} with ID ${id} has been  Created`);
+})
+
+myEmitter.emit('userCreated', 101, 'Adi')
